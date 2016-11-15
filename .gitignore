@@ -9,3 +9,5 @@ lib/*
 helpers
 *.sh
 static/*
+bin/*
+include/*
