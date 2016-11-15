@@ -20,9 +20,12 @@ Django](https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-w
   * activate your virtual env
     * source name_of_environment/bin/activate
     * when your done programming use the command deactivate to exit virtual env
+* install dependencies
+  * pip install -r requirements.txt
 * Migrate database
    * python manage.py makemigrations
    * python manage.py migrate
+
 
 ## Dependencies
   * python 3.5.2
