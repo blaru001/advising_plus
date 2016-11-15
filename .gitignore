@@ -1,0 +1,11 @@
+*.pyc
+*/*.log
+__pycache__/
+*.swp
+*.DS_Store
+.coverage
+htmlcov/*
+lib/*
+helpers
+*.sh
+static/*
