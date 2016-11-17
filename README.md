@@ -12,7 +12,10 @@ Advising office software created for Software Engineering 1
  
   * [Setup Postgres for
 Django](https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-14-04)
-  *  substitute these values in the tutorial - DatabaseName: advising_plus  username : ap_admin Password: temp 
+  *  substitute these values in the tutorial 
+    * DatabaseName: advising_plus 
+    * username : ap_admin 
+    * Password: temp 
 * set up a virtual environment for python
   * pip3 install virtualenv
   * create a virtual env
