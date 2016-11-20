@@ -2,9 +2,9 @@ from django.db import models
 
 
 class Advisor_Timeslot(models.Model):
-   # StartTime = models.TimeField
-   # date = models.DateField
-    advisor = models.CharField(max_length=250)
+    date_time = models.DateTimeField(blank=True)
+    advisor = models.CharField(max_length=250) 
+
 
 #session created when a student is assigned to an Advisor_Timeslot
 class Session(models.Model):
