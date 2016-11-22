@@ -1,7 +1,22 @@
-from django.http  import HttpResponse
-from django.template import loader 
+from django.http import Http404 
+#from django.http  import HttpResponse
+from django.shortcuts import render 
 from .models import Session, Advisor_Timeslot  
 
+
+def index(request):
+    all_Sessions = Session.objects.all()
+    return render(request,'advisingplus/index.html', {'all_Sessions': all_Sessions,} )
+
+
+"""
+def index(request):
+    all_Sessions = Session.objects.all()
+    context = {  'all_Sessions': all_Sessions, } 
+    return render(request,'advisingplus/index.html',context)
+"""
+"""
+from django.template import loader 
 def index(request):
     all_Sessions = Session.objects.all()
     template = loader.get_template('advisingplus/index.html')
@@ -10,6 +25,7 @@ def index(request):
             } 
 
     return HttpResponse(template.render(context, request))
+"""
 
 """def index(request):
     all_Sessions = Session.objects.all()
@@ -22,5 +38,9 @@ def index(request):
     return HttpResponse(html)
 """
 
-def view_Session(request, Session):
-    return HttpResponse('<h2> details for session:' + str(Session) + ' </h2>') 
+def view_Session(request, session_id):
+    try:
+        session = Session.objects.get(pk=session_id)
+    except Session.DoesNotExist:
+        raise Http404("session does not exist")
+    return render(request,'advisingplus/view_Session.html', {'session':session,} ) 

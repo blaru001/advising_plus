@@ -7,7 +7,7 @@ urlpatterns = [
     
     # /i
     #
-    url(r'^(?P<Session>[0-9]+)/$', views.view_Session, name="view_Session"),
+    url(r'^(?P<session_id>[0-9]+)/$', views.view_Session, name="view_Session"),
 
     ]
 
