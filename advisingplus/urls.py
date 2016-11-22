@@ -9,6 +9,8 @@ urlpatterns = [
     #
     url(r'^(?P<Session>[0-9]+)/$', views.view_Session, name="view_Session"),
 
+    url(r'^$', views.view_Document, name="view_Document"),
+
     ]
 
 

@@ -23,4 +23,7 @@ def index(request):
 """
 
 def view_Session(request, Session):
-    return HttpResponse('<h2> details for session:' + str(Session) + ' </h2>') 
+    return HttpResponse('<h2> details for session:' + str(Session) + ' </h2>')
+
+def view_Document(request, Session):
+    return HttpResponse('<h3> This is the Documents views </h3>') 
