@@ -1,4 +1,8 @@
 
+{% extends 'advisingplus/base.html' %}
+
+{% block body %}
+   <!-- Body here-->
 <h3> Students name: {{ session.student }}</h3>
 <h3>Advisor: {{ session.timeslot.advisor}}  </h3>
 <h3>Time and Date: {{ session.timeslot.date_time}}  </h3>
@@ -16,3 +20,4 @@
       <li> feedback - {{ temp.student_feedback }} </li>
   {% endfor %}
 </ul>
+{% endblock %}
