@@ -38,7 +38,8 @@
  {% if all_Sessions %}
  <ul>
    {% for session in all_Sessions %}
-   <li><a href="/{{session.id}}/"> {{ session }}</a></li>
+   </-- /session.id -->
+   <li><a href="{% url 'view_session' session.id %} "> {{ session }}</a></li>
    {% endfor %}
  </ul>      
  {% else %}

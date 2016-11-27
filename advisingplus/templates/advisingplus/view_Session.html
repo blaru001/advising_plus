@@ -1,1 +1,18 @@
-{{ session }}
+
+<h3> Students name: {{ session.student }}</h3>
+<h3>Advisor: {{ session.timeslot.advisor}}  </h3>
+<h3>Time and Date: {{ session.timeslot.date_time}}  </h3>
+
+<h2> notes </h2>
+<ul>
+  {% for temp in session.note_set.all %}
+      <li> note - {{ temp.content }} </li>
+  {% endfor %}
+</ul>
+
+<h2> feedback </h2>
+<ul>
+  {% for temp in session.student_feedback_set.all %}
+      <li> feedback - {{ temp.student_feedback }} </li>
+  {% endfor %}
+</ul>
