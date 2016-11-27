@@ -5,11 +5,14 @@ from . import views
 app_name = 'advisingplus'
 
 urlpatterns = [ 
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.IndexView.as_view() , name='index'),
+    
+   #user log in 
+    url(r'^register/$', views.UserFormView.as_view(), name='register'),
     
     # /i
     #
-    url(r'^(?P<session_id>[0-9]+)/$', views.view_Session, name="view_Session"),
+    url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view() , name="view_Session"),
 
     ]
 
