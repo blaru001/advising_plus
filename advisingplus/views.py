@@ -5,7 +5,7 @@ from django.shortcuts import render , get_object_or_404
 #class based view imports
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.core.urlresolvers import reverse_lazy 
+from django.core.urlresolvers import reverse_lazy, reverse 
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views import generic 
@@ -22,6 +22,18 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Session
     template_name ='advisingplus/view_Session.html' 
+
+class SessionCreate(CreateView):
+    model = Session
+    fields = ['timeslot', 'student']
+
+class SessionUpdate(UpdateView):
+    model = Session
+    fields = ['timeslot', 'student']
+
+class SessionDelete(DeleteView):
+    model = Session
+    success_url = reverse_lazy('advisingplus:index')
 
 '''
 def index(request):

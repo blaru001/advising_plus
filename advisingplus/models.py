@@ -1,12 +1,13 @@
 from django.db import models
 from datetime import datetime
-
+from django.core.urlresolvers import reverse 
 
 
 class Advisor_Timeslot(models.Model):
     date_time = models.DateTimeField(blank=True)
     advisor = models.CharField(max_length=250) 
     
+
     def __str__(self):
         return self.advisor  + ' - ' + self.date_time.strftime(" %d - %m - %y , %I : %M %p")
     
@@ -21,7 +22,10 @@ class Advisor_Timeslot(models.Model):
 class Session(models.Model):
     timeslot = models.ForeignKey(Advisor_Timeslot,blank=True, on_delete=models.CASCADE)
     student = models.CharField(max_length=250,blank=True)
-    
+   
+    def get_absolute_url(self):
+        return reverse('advisingplus:view_Session', kwargs={'pk':self.pk})
+
     def __str__(self):
         return self.student + ' - ' + self.timeslot 
 

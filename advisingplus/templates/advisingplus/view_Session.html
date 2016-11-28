@@ -2,7 +2,12 @@
 {% extends 'advisingplus/base.html' %}
 
 {% block body %}
-   <!-- Body here-->
+
+        <div class="col-sm-8 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+<!-- Body here-->
 <h3> Students name: {{ session.student }}</h3>
 <h3>Advisor: {{ session.timeslot.advisor}}  </h3>
 <h3>Time and Date: {{ session.timeslot.date_time}}  </h3>
@@ -20,4 +25,26 @@
       <li> feedback - {{ temp.student_feedback }} </li>
   {% endfor %}
 </ul>
+
+
+<!-- Delete Album -->
+<form action="{% url 'advisingplus:session-delete' session.id %}" method="post" style="display: inline">
+     {% csrf_token %}
+                                <input type="hidden" name="album_id" value="{{session.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+<!-- Update Album -->
+<form action="{% url 'advisingplus:session-update' session.id %}" method="post" style="display: inline">
+     {% csrf_token %}
+                                <input type="hidden" name="album_id" value="{{session.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </button>
+                            </form>
+                </div>
+                </div>
+                </div>
 {% endblock %}
+
