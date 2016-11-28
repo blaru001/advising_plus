@@ -8,18 +8,18 @@
                 <div class="panel-body">
 
 <!-- Body here-->
-<h3> Students name: {{ session.student }}</h3>
-<h3>Advisor: {{ session.timeslot.advisor}}  </h3>
-<h3>Time and Date: {{ session.timeslot.date_time}}  </h3>
+<h5> Students name: {{ session.student }}</h5>
+<h5>Advisor: {{ session.timeslot.advisor}}  </h5>
+<h5>Time and Date: {{ session.timeslot.date_time}}  </h5>
 
-<h2> notes </h2>
+<h6> notes </h6>
 <ul>
   {% for temp in session.note_set.all %}
       <li> note - {{ temp.content }} </li>
   {% endfor %}
 </ul>
 
-<h2> feedback </h2>
+<h6> feedback </h6>
 <ul>
   {% for temp in session.student_feedback_set.all %}
       <li> feedback - {{ temp.student_feedback }} </li>

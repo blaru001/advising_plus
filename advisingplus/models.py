@@ -9,7 +9,7 @@ class Advisor_Timeslot(models.Model):
     
 
     def __str__(self):
-        return self.advisor  + ' - ' + self.date_time.strftime(" %d - %m - %y , %I : %M %p")
+        return 'Advisor: ' +  self.advisor  + ' - ' + self.date_time.strftime("Date: %d - %m - %y Time: %I : %M %p")
     
     def __add__(self,other):
         return str(self) + other

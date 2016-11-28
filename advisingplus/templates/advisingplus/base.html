@@ -17,7 +17,7 @@
 					<a class="navbar-brand" href="#">Advising Plus</a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li><a href="#">Home</a></li>
+          <li><a href="{% url 'advisingplus:index'%} ">Home</a></li>
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Sessions<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a class="active" href="#">Add New User</a></li>
@@ -29,7 +29,8 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-              Receptionist: Jane Doe</a></li>
+              Receptionist: {{request.user.username}} </a></li>
+                    #request.user.username
 					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>  Sign Out</a></li>
 				</ul>
 			</div>

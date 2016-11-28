@@ -62,7 +62,7 @@ class UserFormView(View):
         form = self.form_class( request.POST)
 
         if form.is_valid():
-            user = form.save(commit=false)
+            user = form.save(commit=False)
 
             #clearn (normalized ) data
             username = form.cleaned_data['username']
