@@ -171,7 +171,7 @@ urlpatterns = [
     #===========================
     url(r'^register/$', views.UserFormView.as_view(), name='register'),
     
-    # url(r'^logout/$', views.logout_view.as_view() , name='logout')
+    # url(r'^logout/$', views.logout , name='logout')
     ]
 
 

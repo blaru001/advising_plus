@@ -183,6 +183,9 @@ class StatusDelete(DeleteView):
 # old functional code
 #=================================
 
+def logout_view(request):
+    logout(request)
+
 '''
 def index(request):
     all_Sessions = Session.objects.all()
