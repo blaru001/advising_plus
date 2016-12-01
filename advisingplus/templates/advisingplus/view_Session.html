@@ -24,6 +24,15 @@
       <li> note - {{ temp.content }} </li>
   {% endfor %}
 </ul>
+
+<!-- add notes -->
+<form action="{% url 'advisingplus:note-add'  %}" method="post" style="display: inline">
+     {% csrf_token %}
+                                <input type="hidden" name="album_id" value="{{session.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </form>
 </div></div></div>
 
 
@@ -38,9 +47,19 @@
       <li> feedback - {{ temp.student_feedback }} </li>
   {% endfor %}
 </ul>
+
+<!-- add Document -->
+<form action="{% url 'advisingplus:feedback-add'  %}" method="post" style="display: inline">
+     {% csrf_token %}
+                                <input type="hidden" name="album_id" value="{{session.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </form>
 </div></div></div>
 
 
+</-- start documents -->
 
 <div class="col-sm-4 col-md-4">
 <div class="panel panel-default">
@@ -48,14 +67,32 @@
 
 <h6> Documents </h6>
 {% for doc in session.getdocs %}
+<h5> {{doc.doc }} </h5>
 <a href="{% url 'advisingplus:document-detail' doc.pk  %}"  >view Document</a>
 <br>
 {% endfor %}
+</-- document menu -->
+
+
+
+</-- document end  menu -->
+<!-- add Document -->
+<form action="{% url 'advisingplus:document-add'  %}" method="post" style="display: inline">
+     {% csrf_token %}
+                                <input type="hidden" name="album_id" value="{{session.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </form>
 
  </div></div></div>
-
+</-- end documents -->
 <br>
 
+<div class="col-sm-4 col-md-4">
+<div class="panel panel-default">
+<div class="panel-body">
+  <h5> Session menu</h5>
 <!-- Delete Album -->
 <form action="{% url 'advisingplus:session-delete' session.id %}" method="post" style="display: inline">
      {% csrf_token %}
@@ -69,7 +106,7 @@
      {% csrf_token %}
                                 <input type="hidden" name="album_id" value="{{session.id }}" />
                                 <button type="submit" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-edit"></span>
                                 </button>
                             </form>
                 </div>
