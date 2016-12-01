@@ -1,15 +1,20 @@
-from django.db import models
+from django.db import models 
 from datetime import datetime
 from django.core.urlresolvers import reverse 
+from django.contrib.auth.models import User 
 
+
+
+class Advisor_Status(models.Model):
+    advisor_availability = models.BooleanField() 
+    advisor = models.ForeignKey(User, unique=True)
 
 class Advisor_Timeslot(models.Model):
     date_time = models.DateTimeField(blank=True)
-    advisor = models.CharField(max_length=250) 
+    advisor = models.ForeignKey(User, unique=True)
     
-
     def __str__(self):
-        return 'Advisor: ' +  self.advisor  + ' - ' + self.date_time.strftime("Date: %d - %m - %y Time: %I : %M %p")
+        return 'Advisor: ' + str( self.advisor)  + ' - ' + self.date_time.strftime("Date: %d - %m - %y Time: %I : %M %p")
     
     def __add__(self,other):
         return str(self) + other
@@ -21,19 +26,22 @@ class Advisor_Timeslot(models.Model):
 
 class Session(models.Model):
     timeslot = models.ForeignKey(Advisor_Timeslot,blank=True, on_delete=models.CASCADE)
-    student = models.CharField(max_length=250,blank=True)
+    student = models.ForeignKey(User, unique=True)
    
     def get_absolute_url(self):
-        return reverse('advisingplus:view_Session', kwargs={'pk':self.pk})
+        return reverse('advisingplus:session-detail', kwargs={'pk':self.pk})
 
     def __str__(self):
-        return self.student + ' - ' + self.timeslot 
+        return str(self.student) + ' - ' + self.timeslot 
 
     def __add__(self,other):
         return str(self) + other
 
     def __radd__(self,other):
         return other + str(self)
+    
+    def docUrl(self):
+        return  self.document_set.get(sessionId=self.pk).doc.url 
 
 class Note(models.Model):
     sessionId = models.ForeignKey(Session,blank=True, on_delete=models.CASCADE)
@@ -50,8 +58,8 @@ class Note(models.Model):
 
 class Document(models.Model):
     sessionId = models.ForeignKey(Session, blank=True,  on_delete=models.CASCADE)
-    docLink = models.FilePathField
-    docType = models.CharField(max_length=10)
+    doc = models.FileField(blank = True)
+    docname = models.CharField(blank = True ,max_length=100)
     requestReason = models.CharField(max_length=400)
     
     def __str__(self):
@@ -62,7 +70,9 @@ class Document(models.Model):
 
     def __radd__(self,other):
         return other + str(self)
-
+    
+    def getUrl(self):
+        return self.doc.url
 class Student_Feedback(models.Model):   
     sessionId = models.ForeignKey(Session, blank=True, on_delete=models.CASCADE)
     student_feedback = models.CharField(max_length=500)

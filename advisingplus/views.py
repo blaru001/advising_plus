@@ -7,13 +7,46 @@ from django.shortcuts import render , get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy, reverse 
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login , logout
 from django.views import generic 
 from django.views.generic import View 
 from .models import Session, Advisor_Timeslot  
 from .forms import UserForm 
 
-class IndexView(generic.ListView):
+
+
+#==================================
+#    sessions
+#=================================
+
+class SessionListView(generic.ListView):
+    template_name = 'advisingplus/index.html'
+    context_object_name = 'object_list' # can be anthing- used in template   
+    def get_queryset(self):
+        return Session.objects.all()
+        # Session.objects.filter(id=3)
+
+class SessionDetailView(generic.DetailView):
+    model = Session
+    template_name ='advisingplus/view_Session.html' 
+
+class SessionCreate(CreateView):
+    model = Session
+    fields = ['timeslot', 'student']
+
+class SessionUpdate(UpdateView):
+    model = Session
+    fields = ['timeslot', 'student']
+
+class SessionDelete(DeleteView):
+    model = Session
+    success_url = reverse_lazy('advisingplus:session-list')
+
+#================================
+#  time slots
+#================================
+'''
+class SessionListView(generic.ListView):
     template_name = 'advisingplus/index.html'
     context_object_name = 'object_list' # can be anthing- used in template   
     def get_queryset(self):
@@ -34,6 +67,11 @@ class SessionUpdate(UpdateView):
 class SessionDelete(DeleteView):
     model = Session
     success_url = reverse_lazy('advisingplus:index')
+'''
+
+#=================================
+# old functional code
+#=================================
 
 '''
 def index(request):
@@ -44,7 +82,11 @@ def view_Session(request, session_id):
     session = get_object_or_404(Session,pk=session_id )
     return render(request,'advisingplus/view_Session.html', {'session':session,} ) 
 '''
-
+'''
+class logout(View):
+        logout(request)
+        return redirect('advisingplus:index')
+'''
 #===============================
 #user login
 #===============================
@@ -78,7 +120,7 @@ class UserFormView(View):
                 if user.is_active:
 
                     login(request, user)
-                    return redirect('advisingplus:index')
+                    return redirect('advisingplus:session-list')
                     #if you need this info later use
                     # request.user.username
         

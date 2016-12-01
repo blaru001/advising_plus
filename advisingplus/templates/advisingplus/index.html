@@ -17,9 +17,10 @@
 <h6>Advisor: {{ session.timeslot.advisor}}  </h6>
 <h6>Time and Date: {{ session.timeslot.date_time}}  </h6>
 
+<h6>file url: {{ session.docUrl   }} </h6>
+<a href="{{session.docURl}}"download >view Document</a>
      </-- /session.id -->
-    <a href="{% url 'advisingplus:view_Session' session.id %} ">view this
-      session</a>
+    <a href="{% url 'advisingplus:session-detail' session.id %} ">view ths session</a>
 
                 </div>
                 </div>
@@ -34,6 +35,6 @@
      {% endif %}
 
 {% endblock %}
-  <!-- end body -->>
+  <!-- end body -->
 
 
