@@ -1,0 +1,34 @@
+
+{% extends 'advisingplus/base.html' %}
+
+{% block body %}
+   <!-- Body here-->
+  {% if object_list %}
+ 
+     </-- each pannel-->
+     {% for note  in object_list  %}
+
+ 
+ 
+        <div class="col-sm-10 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+<h6> Message: {{ note.content }}</h6>
+
+     </-- /session.id -->
+    <a href="{% url 'advisingplus:note-detail' note.id %} ">view this note</a>
+
+                </div>
+                </div>
+                </div>
+     {% endfor %}
+ 
+ 
+ 
+ 
+  {% else %}
+      <h3> no notes  in system </h3> 
+     {% endif %}
+
+{% endblock %}

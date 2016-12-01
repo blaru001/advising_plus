@@ -18,13 +18,14 @@
 				</div>
 				<ul class="nav navbar-nav">
           <li><a href="{% url 'advisingplus:session-list'%} ">Home</a></li>
-					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Sessions<span class="caret"></span></a>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu<span class="caret"></span></a>
 						<ul class="dropdown-menu">
               <li><a class="active" href="{% url 'advisingplus:register' %}">Add New User</a></li>
               <li><a href="{% url 'advisingplus:session-add' %} ">Create Session</a></li>
               <li><a href="{% url 'advisingplus:document-add' %}">add document</a></li>
+              <li><a href="{% url 'advisingplus:timeslot-add' %}">add timeslot</a></li>
+              <li><a href="{% url 'advisingplus:note-add' %}">add note</a></li>
 						</ul>
-					</li>
 					<li><a href="#">FAQ</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

@@ -10,7 +10,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login , logout
 from django.views import generic 
 from django.views.generic import View 
-from .models import Session, Timeslot, Document  
+from .models import Session, Timeslot, Document, Note 
 from .forms import UserForm 
 
 
@@ -70,7 +70,60 @@ class DocumentDelete(DeleteView):
     model = Document
     success_url = reverse_lazy('advisingplus:document-list')
 
+#=================================
+#  timeslots
+#================================
 
+class TimeslotListView(generic.ListView):
+    template_name = 'advisingplus/timeslot_list.html'
+    context_object_name = 'object_list'    
+    def get_queryset(self):
+        return Timeslot.objects.all()
+        # Session.objects.filter(id=3)
+
+class TimeslotDetailView(generic.DetailView):
+    model = Timeslot 
+    template_name ='advisingplus/view_timeslot.html' 
+
+class TimeslotCreate(CreateView):
+    model = Timeslot
+    fields = [ 'date_time', 'advisor' ]
+
+class TimeslotUpdate(UpdateView):
+    model = Timeslot 
+    fields = [ 'date_time', 'advisor' ]
+
+class TimeslotDelete(DeleteView):
+    model = Timeslot 
+    success_url = reverse_lazy('advisingplus:timeslot-list')
+
+
+#=================================
+#  note
+#================================
+
+class NoteListView(generic.ListView):
+    template_name = 'advisingplus/note_list.html'
+    context_object_name = 'object_list'    
+    def get_queryset(self):
+        return Note.objects.all()
+        # Session.objects.filter(id=3)
+
+class NoteDetailView(generic.DetailView):
+    model = Note 
+    template_name ='advisingplus/view_note.html' 
+
+class NoteCreate(CreateView):
+    model = Note
+    fields = [ 'content', 'sessionId' ]
+
+class NoteUpdate(UpdateView):
+    model = Note 
+    fields = [ 'content', 'sessionId' ]
+
+class NoteDelete(DeleteView):
+    model = Note 
+    success_url = reverse_lazy('advisingplus:note-list')
 #=================================
 # old functional code
 #=================================

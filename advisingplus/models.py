@@ -11,8 +11,11 @@ class Status(models.Model):
 
 class Timeslot(models.Model):
     date_time = models.DateTimeField(blank=True)
-    advisor = models.ForeignKey(User, unique=True)
+    advisor = models.ForeignKey(User)
     
+    def get_absolute_url(self):
+        return reverse('advisingplus:timeslot-detail', kwargs={'pk':self.pk})
+
     def __str__(self):
         return 'Advisor: ' + str( self.advisor)  + ' - ' + self.date_time.strftime("Date: %d - %m - %y Time: %I : %M %p")
     
@@ -26,7 +29,7 @@ class Timeslot(models.Model):
 
 class Session(models.Model):
     timeslot = models.ForeignKey(Timeslot,blank=True, on_delete=models.CASCADE)
-    student = models.ForeignKey(User, unique=True)
+    student = models.ForeignKey(User)
    
     def get_absolute_url(self):
         return reverse('advisingplus:session-detail', kwargs={'pk':self.pk})
@@ -44,8 +47,11 @@ class Session(models.Model):
         return  self.document_set.all() 
 
 class Note(models.Model):
-    sessionId = models.ForeignKey(Session,blank=True, on_delete=models.CASCADE)
+    sessionId = models.ForeignKey(Session,blank=True)
     content = models.CharField(max_length=400, blank=True)
+
+    def get_absolute_url(self):
+        return reverse('advisingplus:note-detail', kwargs={'pk':self.pk})
 
     def __str__(self):
         return self.sessionId + ' - ' +  self.content 
@@ -57,7 +63,7 @@ class Note(models.Model):
         return other + str(self)
 
 class Document(models.Model):
-    sessionId = models.ForeignKey(Session, blank=True,  on_delete=models.CASCADE)
+    sessionId = models.ForeignKey(Session, blank=True )
     doc = models.FileField(blank = True)
     docname = models.CharField(blank = True ,max_length=100)
     requestReason = models.CharField(max_length=400)
@@ -79,7 +85,7 @@ class Document(models.Model):
         return self.doc.url
 
 class Feedback(models.Model):   
-    sessionId = models.ForeignKey(Session, blank=True, on_delete=models.CASCADE)
+    sessionId = models.ForeignKey(Session, blank=True, )
     student_feedback = models.CharField(max_length=500)
      
     def __str__(self):

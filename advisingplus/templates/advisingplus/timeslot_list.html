@@ -1,0 +1,36 @@
+
+
+{% extends 'advisingplus/base.html' %}
+
+{% block body %}
+   <!-- Body here-->
+  {% if object_list %}
+ 
+     </-- each pannel-->
+     {% for timeslot  in object_list  %}
+
+ 
+ 
+        <div class="col-sm-10 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+<h6> Timeslot: {{ timeslot.date_time }}</h6>
+<h6>Advisor Name: {{ timeslot.advisor}}  </h6>
+
+     </-- /session.id -->
+    <a href="{% url 'advisingplus:timeslot-detail' timeslot.id %} ">view this timeslot</a>
+
+                </div>
+                </div>
+                </div>
+     {% endfor %}
+ 
+ 
+ 
+ 
+  {% else %}
+      <h3> no timeslots in system </h3> 
+     {% endif %}
+
+{% endblock %}

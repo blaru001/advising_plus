@@ -1,0 +1,39 @@
+
+{% extends 'advisingplus/base.html' %}
+
+{% block body %}
+
+        <div class="col-sm-12 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+<!-- Body here-->
+<h6> Timeslot: {{ note.content  }}</h6>
+
+
+<div class="col-sm-4 col-md-3">
+<div class="panel panel-default">
+ <div class="panel-body">
+
+
+<!-- Delete -->
+<form action="{% url 'advisingplus:note-delete' note.id %}" method="post" style="display: inline">
+     {% csrf_token %}
+                                <input type="hidden" name="album_id" value="{{note.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+<!-- Update  -->
+<form action="{% url 'advisingplus:note-update' note.id %}" method="post" style="display: inline">
+     {% csrf_token %}
+                                <input type="hidden" name="album_id"  value="{{timeslot.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </button>
+                            </form>
+                </div>
+                </div>
+                </div>
+{% endblock %}
+
