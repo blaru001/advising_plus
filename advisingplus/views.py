@@ -10,7 +10,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login , logout
 from django.views import generic 
 from django.views.generic import View 
-from .models import Session, Timeslot, Document, Note 
+from .models import Session, Timeslot, Document, Note, Feedback, Status 
 from .forms import UserForm 
 
 
@@ -124,6 +124,61 @@ class NoteUpdate(UpdateView):
 class NoteDelete(DeleteView):
     model = Note 
     success_url = reverse_lazy('advisingplus:note-list')
+
+#=================================
+#  feedback
+#================================
+
+class FeedbackListView(generic.ListView):
+    template_name = 'advisingplus/feedback_list.html'
+    context_object_name = 'object_list'    
+    def get_queryset(self):
+        return Feedback.objects.all()
+        # Session.objects.filter(id=3)
+
+class FeedbackDetailView(generic.DetailView):
+    model = Feedback 
+    template_name ='advisingplus/view_feedback.html' 
+
+class FeedbackCreate(CreateView):
+    model = Feedback
+    fields = [ 'student_feedback', 'sessionId' ]
+
+class FeedbackUpdate(UpdateView):
+    model = Feedback
+    fields = [ 'student_feedback', 'sessionId' ]
+
+class FeedbackDelete(DeleteView):
+    model = Feedback
+    success_url = reverse_lazy('advisingplus:feedback-list')
+
+#=================================
+#  status
+#================================
+
+class StatusListView(generic.ListView):
+    template_name = 'advisingplus/status_list.html'
+    context_object_name = 'object_list'    
+    def get_queryset(self):
+        return Status.objects.all()
+        # Session.objects.filter(id=3)
+
+class StatusDetailView(generic.DetailView):
+    model = Status 
+    template_name ='advisingplus/view_status.html' 
+
+class StatusCreate(CreateView):
+    model = Status
+    fields = [ 'advisor_available', 'advisor' ]
+
+class StatusUpdate(UpdateView):
+    model = Status
+    fields = [ 'advisor_available', 'advisor' ]
+
+class StatusDelete(DeleteView):
+    model = Status
+    success_url = reverse_lazy('advisingplus:status-list')
+
 #=================================
 # old functional code
 #=================================

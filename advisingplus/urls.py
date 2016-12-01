@@ -112,6 +112,60 @@ urlpatterns = [
     #note/2/delete/
     url(r'^note/(?P<pk>[0-9]+)/delete/$', views.NoteDelete.as_view() , name='note-delete'),
     
+    #========================
+    # feedback
+    #========================
+
+    url(r'^feedback/$', views.FeedbackListView.as_view() , name='feedback-list'),
+    
+
+    #view a feedback
+    #/2
+    url(r'^feedback/(?P<pk>[0-9]+)/$', views.FeedbackDetailView.as_view() , name='feedback-detail'),
+    
+
+    #create a feeback
+    # feedback/add/
+    url(r'^feedback/add/$', views.FeedbackCreate.as_view() , name='feedback-add'),
+
+
+    #update a feedback
+    # feedback/2
+    url(r'^feedback/update/(?P<pk>[0-9]+)/$', views.FeedbackUpdate.as_view(), name='feedback-update'),
+
+
+    #delete a feedback
+    #feedback/2/delete/
+    url(r'^feedback/(?P<pk>[0-9]+)/delete/$', views.FeedbackDelete.as_view() , name='feedback-delete'),
+   
+   
+    #========================
+    # status
+    #========================
+
+    url(r'^status/$', views.StatusListView.as_view() , name='status-list'),
+    
+
+    #view a status
+    #/2
+    url(r'^status/(?P<pk>[0-9]+)/$', views.StatusDetailView.as_view() , name='status-detail'),
+    
+
+    #create a status
+    # status/add/
+    url(r'^status/add/$', views.StatusCreate.as_view() , name='status-add'),
+
+
+    #update a status
+    # status/2
+    url(r'^status/update/(?P<pk>[0-9]+)/$', views.StatusUpdate.as_view(), name='status-update'),
+
+
+    #delete a Status
+    #status/2/delete/
+    url(r'^status/(?P<pk>[0-9]+)/delete/$', views.StatusDelete.as_view()  , name='status-delete'),
+    
+    
     #===========================
     #user log in 
     #===========================

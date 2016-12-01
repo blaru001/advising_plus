@@ -1,0 +1,35 @@
+
+
+{% extends 'advisingplus/base.html' %}
+
+{% block body %}
+   <!-- Body here-->
+  {% if object_list %}
+ 
+     </-- each pannel-->
+     {% for feedback  in object_list  %}
+
+ 
+ 
+        <div class="col-sm-10 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                  <h6> Message: {{ feed.student_feedback }}</h6>
+
+     </-- /session.id -->
+    <a href="{% url 'advisingplus:feedback-detail' feedback.id %} ">view this note</a>
+
+                </div>
+                </div>
+                </div>
+     {% endfor %}
+ 
+ 
+ 
+ 
+  {% else %}
+      <h3> no feedback  in system </h3> 
+     {% endif %}
+
+{% endblock %}

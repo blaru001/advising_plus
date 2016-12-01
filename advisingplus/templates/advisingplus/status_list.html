@@ -1,0 +1,36 @@
+
+
+{% extends 'advisingplus/base.html' %}
+
+{% block body %}
+   <!-- Body here-->
+  {% if object_list %}
+ 
+     </-- each pannel-->
+     {% for status  in object_list  %}
+
+ 
+ 
+        <div class="col-sm-10 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                  <h6> Advisor: {{ status.advisor }}</h6>
+                  <h6> Advisor available: {{ status.advisor_available }}</h6>
+
+     </-- /session.id -->
+    <a href="{% url 'advisingplus:status-detail' status.id %} ">view this note</a>
+
+                </div>
+                </div>
+                </div>
+     {% endfor %}
+ 
+ 
+ 
+ 
+  {% else %}
+      <h3> no status  in system </h3> 
+     {% endif %}
+
+{% endblock %}
