@@ -1,0 +1,42 @@
+
+
+{% extends 'advisingplus/base.html' %}
+
+{% block body %}
+
+        <div class="col-sm-12 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+<!-- Body here-->
+<h5> Request Reason: {{ document.requestReason }}</h5>
+<h5>document name: {{ document.docname}}  </h5>
+<h5> Document URL : {{ document.doc.url}}  </h5>
+
+
+<div class="col-sm-4 col-md-3">
+<div class="panel panel-default">
+ <div class="panel-body">
+
+
+<!-- Delete -->
+<form action="{% url 'advisingplus:document-delete' document.id %}" method="post" style="display: inline">
+     {% csrf_token %}
+                                <input type="hidden" name="album_id" value="{{document.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+<!-- Update  -->
+<form action="{% url 'advisingplus:document-update' document.id %}" method="post" style="display: inline">
+     {% csrf_token %}
+                                <input type="hidden" name="album_id" value="{{document.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </button>
+                            </form>
+                </div>
+                </div>
+                </div>
+{% endblock %}
+

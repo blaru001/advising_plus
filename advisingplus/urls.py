@@ -32,9 +32,31 @@ urlpatterns = [
     url(r'^session/(?P<pk>[0-9]+)/delete/$', views.SessionDelete.as_view() , name='session-delete'),
   
     #========================
-    #    timeslot urls
+    # documents 
     #========================
 
+    url(r'^document/$', views.DocumentListView.as_view() , name='document-list'),
+    
+
+    #view a document
+    #/2
+    url(r'^document/(?P<pk>[0-9]+)/$', views.DocumentDetailView.as_view() , name='document-detail'),
+    
+
+    #create a document
+    # session/add/
+    url(r'^document/add/$', views.DocumentCreate.as_view() , name='document-add'),
+
+
+    #update a document
+    # session/2
+    url(r'^document/update/(?P<pk>[0-9]+)/$', views.DocumentUpdate.as_view(), name='document-update'),
+
+
+    #delete a document
+    #session/2/delete/
+    url(r'^documents/(?P<pk>[0-9]+)/delete/$', views.DocumentDelete.as_view() , name='document-delete'),
+  
      
 
     #===========================

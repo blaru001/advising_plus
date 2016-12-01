@@ -10,7 +10,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login , logout
 from django.views import generic 
 from django.views.generic import View 
-from .models import Session, Advisor_Timeslot  
+from .models import Session, Timeslot, Document  
 from .forms import UserForm 
 
 
@@ -43,31 +43,33 @@ class SessionDelete(DeleteView):
     success_url = reverse_lazy('advisingplus:session-list')
 
 #================================
-#  time slots
+#  documents
 #================================
-'''
-class SessionListView(generic.ListView):
-    template_name = 'advisingplus/index.html'
-    context_object_name = 'object_list' # can be anthing- used in template   
+
+
+class DocumentListView(generic.ListView):
+    template_name = 'advisingplus/document_list.html'
+    context_object_name = 'object_list'    
     def get_queryset(self):
-        return Session.objects.all()
+        return Document.objects.all()
+        # Session.objects.filter(id=3)
 
-class DetailView(generic.DetailView):
-    model = Session
-    template_name ='advisingplus/view_Session.html' 
+class DocumentDetailView(generic.DetailView):
+    model = Document
+    template_name ='advisingplus/view_document.html' 
 
-class SessionCreate(CreateView):
-    model = Session
-    fields = ['timeslot', 'student']
+class DocumentCreate(CreateView):
+    model = Document
+    fields = ['sessionId','doc', 'docname','requestReason']
 
-class SessionUpdate(UpdateView):
-    model = Session
-    fields = ['timeslot', 'student']
+class DocumentUpdate(UpdateView):
+    model = Document
+    fields = ['sessionId','doc', 'docname','requestReason']
 
-class SessionDelete(DeleteView):
-    model = Session
-    success_url = reverse_lazy('advisingplus:index')
-'''
+class DocumentDelete(DeleteView):
+    model = Document
+    success_url = reverse_lazy('advisingplus:document-list')
+
 
 #=================================
 # old functional code

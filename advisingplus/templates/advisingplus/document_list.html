@@ -1,0 +1,37 @@
+
+{% extends 'advisingplus/base.html' %}
+
+{% block body %}
+   <!-- Body here-->
+  {% if object_list %}
+ 
+     </-- each pannel-->
+     {% for document  in object_list  %}
+
+ 
+ 
+        <div class="col-sm-10 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+<h6> Document name: {{ document.doc.url }}</h6>
+<h6>Document Name: {{ document.docname}}  </h6>
+<h6>request Reason: {{ document.requestReason }}  </h6>
+
+<h6>file url: {{ document.doc.url   }} </h6>
+     </-- /session.id -->
+    <a href="{% url 'advisingplus:document-detail' document.id %} ">view this document</a>
+
+                </div>
+                </div>
+                </div>
+     {% endfor %}
+ 
+ 
+ 
+ 
+  {% else %}
+      <h3> no documents in system </h3> 
+     {% endif %}
+
+{% endblock %}
